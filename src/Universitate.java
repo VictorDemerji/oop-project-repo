@@ -1,43 +1,6 @@
 import java.util.Scanner;
 import java.time.Year;
 
-class Student {
-    String nume;
-    int anulNasterii;
-    String specialitate;
-    double nota1, nota2, notaExamen;
-
-    public Student(String nume, int anulNasterii, String specialitate, double nota1, double nota2, double notaExamen) {
-        this.nume = nume;
-        this.anulNasterii = anulNasterii;
-        this.specialitate = specialitate;
-        this.nota1 = nota1;
-        this.nota2 = nota2;
-        this.notaExamen = notaExamen;
-    }
-
-    public int getVarsta() {
-        int anulCurent = Year.now().getValue();
-        return anulCurent - anulNasterii;
-    }
-
-    public double getMedia() {
-        return (nota1 + nota2 + notaExamen) / 3.0;
-    }
-
-    public void afisareRezultate() {
-        System.out.println("Student: " + nume + ", Varsta: " + getVarsta() + " ani");
-        System.out.println("Specialitate: " + specialitate);
-        double media = getMedia();
-        System.out.println("Media studentului este: " + media);
-        if (media > 9) {
-            System.out.println("Esti promovat!");
-        } else {
-            System.out.println("Nu ati trecut cu brio, incercati in semestrul urmator!");
-        }
-    }
-}
-
 public class Universitate {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -81,10 +44,16 @@ public class Universitate {
         System.out.print("Introduceti nota examen: ");
         double notaExamen = scanner.nextDouble();
 
-        Student student = new Student(nume, anulNasterii, specialitate, nota1, nota2, notaExamen);
-
         System.out.println("----- Rezultate finale -----");
-        student.afisareRezultate();
+            System.out.println("Student: " + nume + ", Varsta: " + (Year.now().getValue() - anulNasterii) + " ani");
+            System.out.println("Specialitate: " + specialitate);
+            double media = (nota1 + nota2 + notaExamen) / 3.0;
+            System.out.println("Media studentului este: " + media);
+            if (media > 9) {
+                System.out.println("Esti promovat!");
+            } else {
+                System.out.println("Nu ati trecut cu brio, incercati in semestrul urmator!");
+            }
 
         System.out.println("Iesire din program...");
     }
